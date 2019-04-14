@@ -1,0 +1,30 @@
+<form action="{:url('banner/ajax_save')}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>轮播图名</label>
+        <input type="text" name="name" class="form-control t" value="{$data.name}">
+        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+    </div>
+    <div class="form-group">
+        <label>轮播图</label>
+        <input type="file" name="img">
+        <img height="150px" src="/blog/public/upload/banner/{$data.img}" alt="">
+        <input type="hidden" name="oldimg" value="{$data.img}">
+        <input type="hidden" name="id" value="{$data.id}">
+    </div>
+    <div class="form-group">
+        <label>跳转地址</label>
+        <input type="text" name="url" class="form-control t" value="{$data.url}">
+        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+    </div>
+    <div class="form-group">
+        <label>排序</label>
+        <input type="number" name="sort" value="{$data.sort}" class="form-control t">
+        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+    </div>
+    <div class="form-group pull-right">
+        <input type="submit" value="提交" onclick="save()" class="btn btn-success">
+        <input type="reset" value="重置" class="btn btn-danger">
+    </div>
+
+    <div style="clear:both"></div>
+</form>

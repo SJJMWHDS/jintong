@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/blog/public/static/home/css/table.css">
+    <link rel="stylesheet" href="/blog/public/static/home/css/index.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_781607_r3nr7klwxza.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_779204_vdyzpi9hph.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="page">
+    <header>
+        <div class="wf_wrap" style="display: table">
+            <div class="wf_td branding" style="display: table">
+                <a href="index.html" class="bitem logo">
+                    <img src="https://ccdn.goodq.top/caches/b2ac3c765e8751bf8ed83348310feed1/aHR0cDovLzU2YjAwNTk3MGNmYzcudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNi8wMi8xNjlmMTcwNGViYzMxZWI0NjUzODhjZjY1MzM0Y2RkZC5wbmc_p_p100_p_3D.png" alt="" class="preload-me" style="width: 61.83px;height: 100px;margin-right: 17px">
+                </a>
+                <div class="bitem text" style="display: table-cell;vertical-align: middle">
+                    <a href="" style="color: #383838">
+                            <span>
+                                <strong>Sakura's&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </span>
+                    </a>
+                    <a href="" style="color: #383838">
+                            <span>
+                                <strong>Blog</strong>
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <div class="wf_td navigation" style="width: 457.6px">
+                <ul class="mainmenu">
+                    <li class="index">
+                        <a href="index.html">博客</a>
+                    </li>
+                    <li class="about">
+                        <a href="about_me.html">关于我</a>
+                    </li>
+                    <li class="table">
+                        <a href="table.html" class="active">和我联系</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wf_td assistive_info">
+                <div class="mobileHidde">
+                    <div class="bitSearchForm" style="padding-top: 10px!important;padding-bottom:10px!important;word-wrap: break-word">
+                        <form action="" class="searchform">
+                            <input type="text" class="search" name="search" id="form_search" value placeholder="请输入关键字">
+                            <a type="submit" class="Go iconfont icon-sousuo4" href="javascript:;" style="line-height: 33px"></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="bit-main">
+        <div class="title" style=";color: #555555;padding-top: 4px;padding-left: 45px;padding-right: 45px">
+            <h1 class="qfy_title left mobileleft">
+                <div class="qfy_title_inner" style="display:inline-block;width:100%;font-size:16px;font-weight:bold;font-style:normal;color:#333333;border-bottom: 1px solid #acc4ac;line-height: 41px">
+                    和我联系
+                </div>
+            </h1>
+        </div>
+        <div class="wf-wrap">
+            <div class="conter">
+                <section>
+                    <p>
+                        <div style="position: relative;margin-top: 10px;color:#696969;font-size: 14px;word-spacing: normal;">
+                            <span>&nbsp;</span>使用下面的表单之前需要配置邮箱，
+                            <span>详情可以参考教程</span>
+                            <span><a href="" target="_blank" style="color:#696969;">《如何设置表单中的邮箱》</a></span>
+                         </div>
+                        <form class="form-horizontal col-sm-6  col-sm-offset-3" action="insert.php" method="post">
+                        <div class="form-group" >
+                            <label>称呼</label>
+                            <div class="ip">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label>Email信箱</label>
+                            <div class="ip">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label>内容</label>
+                            <div class="ip">
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label>验证码</label>
+                            <div class="ip">
+                                <input type="text">
+                                <canvas id="canvas" width="115px" height="40px"></canvas>
+                            </div>
+                        </div>
+                        <div class="form-group sc" >
+                            <button type="submit">
+                                    送出
+                            </button>
+                        </div>
+                    </form>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+    <footer style="padding:0 20px;border-top: 1px solid rgba(0,0,0,0.2);">
+        <div class="container" style="width:100%;margin-bottom: 20px;color: #555555;padding-top: 20px;padding-bottom: 20px;">
+            <div class="qfe" style="width: 100%;padding:0 5px">
+                <div style="text-align: center;">
+                    <span style="color: rgb(51, 51, 51); font-size: 12px; background-color: rgb(255, 255, 255);">© 2017 Marry's Blog 版权所有 网站备案号: 京123456789</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
+<script>
+    //生成随机数
+    function randomNum(min,max){
+        return Math.floor(Math.random()*(max-min)+min);
+    }
+    //生成随机颜色RGB分量
+    function randomColor(min,max){
+        var _r = randomNum(min,max);
+        var _g = randomNum(min,max);
+        var _b = randomNum(min,max);
+        return "rgb("+_r+","+_g+","+_b+")";
+    }
+    //先阻止画布默认点击发生的行为再执行drawPic()方法
+    document.getElementById("canvas").onclick = function(e){
+        e.preventDefault();
+        drawPic();
+    };
+    function drawPic(){
+        //获取到元素canvas
+        var $canvas = document.getElementById("canvas");
+        var _str = "0123456789";//设置随机数库
+        var _picTxt = "";//随机数
+        var _num = 4;//4个随机数字
+        var _width = $canvas.width;
+        var _height = $canvas.height;
+        var ctx = $canvas.getContext("2d");//获取 context 对象
+        ctx.textBaseline = "bottom";//文字上下对齐方式--底部对齐
+        ctx.fillStyle = randomColor(180,240);//填充画布颜色
+        ctx.fillRect(0,0,_width,_height);//填充矩形--画画
+        for(var i=0; i<_num; i++){
+            var x = (_width-10)/_num*i+10;
+            var y = randomNum(_height/2,_height);
+            var deg = randomNum(-45,45);
+            var txt = _str[randomNum(0,_str.length)];
+            _picTxt += txt;//获取一个随机数
+            ctx.fillStyle = randomColor(10,100);//填充随机颜色
+            ctx.font = randomNum(16,40)+"px SimHei";//设置随机数大小，字体为SimHei
+            ctx.translate(x,y);//将当前xy坐标作为原始坐标
+            ctx.rotate(deg*Math.PI/180);//旋转随机角度
+            ctx.fillText(txt, 0,0);//绘制填色的文本
+            ctx.rotate(-deg*Math.PI/180);
+            ctx.translate(-x,-y);
+        }
+        for(var i=0; i<_num; i++){
+            //定义笔触颜色
+            ctx.strokeStyle = randomColor(90,180);
+            ctx.beginPath();
+            //随机划线--4条路径
+            ctx.moveTo(randomNum(0,_width), randomNum(0,_height));
+            ctx.lineTo(randomNum(0,_width), randomNum(0,_height));
+            ctx.stroke();
+        }
+        for(var i=0; i<_num*10; i++){
+            ctx.fillStyle = randomColor(0,255);
+            ctx.beginPath();
+            //随机画原，填充颜色
+            ctx.arc(randomNum(0,_width),randomNum(0,_height), 1, 0, 2*Math.PI);
+            ctx.fill();
+        }
+        return _picTxt;//返回随机数字符串
+    }
+    drawPic();
+</script>

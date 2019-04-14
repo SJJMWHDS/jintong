@@ -1,0 +1,93 @@
+{layout name="blogadmin"}
+<ol class="breadcrumb">
+    <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+    <li><a href="#">评论管理</a></li>
+    <li class="active">评论列表</li>
+
+    <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+</ol>
+
+<!-- 面版 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p class="pull-right tots">共有 {$tot} 条数据</p>
+        <form action="" class="form-inline pull-right">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" value="{$get['search']|default=''}"
+                       placeholder="请输入你要搜索的内容">
+            </div>
+            <input type="submit" value="搜索" class="btn btn-success">
+        </form>
+        <div style="clear: both"></div>
+    </div>
+    {if condition="$tot"}
+    <table class="table-bordered table table-hover">
+        <th style="vertical-align: middle;text-align: center">ID</th>
+        <th style="vertical-align: middle;text-align: center">用户名</th>
+        <th style="vertical-align: middle;text-align: center">新闻标题</th>
+        <th style="vertical-align: middle;text-align: center">新闻图片</th>
+        <th style="vertical-align: middle;text-align: center">评论内容</th>
+        <th style="vertical-align: middle;text-align: center">评论时间</th>
+        <th style="vertical-align: middle;text-align: center">状态</th>
+        {volist name="data" id="v"}
+        <tr>
+            <td style="vertical-align: middle;text-align: center">{$v.id}</td>
+            <td style="vertical-align: middle;text-align: center">{$v.username}</td>
+            <td style="vertical-align: middle;text-align: center">{$v.title}</td>
+            <td style="vertical-align: middle;text-align: center">
+                <img width="100px" src="/blog/public/upload/news/{$v.img}" alt="">
+            </td>
+            <td style="vertical-align: middle;text-align: center">{$v.text}</td>
+            <td style="vertical-align: middle;text-align: center">{:date("Y-m-d H:i:s",$v.time)}</td>
+            <td>
+                <select name="" class="form-control" onchange=sta(this,{$v.id})>
+                    {switch name="$v.status"}
+                    {case value="0"}
+                    <option value="0" selected>待支付</option>
+                    <option value="1">审核成功</option>
+                    <option value="2">审核失败</option>
+                    {/case}
+                    {case value="1"}
+                    <option value="0">待支付</option>
+                    <option value="1" selected>审核成功</option>
+                    <option value="2">审核失败</option>
+                    {/case}
+                    {case value="2"}
+                    <option value="0">待支付</option>
+                    <option value="1">审核成功</option>
+                    <option value="2" selected>审核失败</option>
+                    {/case}
+                    {/switch}
+                </select>
+            </td>
+        </tr>
+        {/volist}
+    </table>
+    {/if}
+    {if condition="$tot==0"}
+    <p>
+        <img src="/blog/public/upload/users/noneSJ.png" alt="">
+    </p>
+    {/if}
+    <!-- 分页效果 -->
+    <div class="panel-footer">
+        <nav style="text-align:center;">
+            {$data->render()}
+        </nav>
+
+    </div>
+</div>
+<script>
+    function sta(obj, id) {
+        let val = $(obj).val();
+        $.get("{:url('ping/ajax_toggle')}", {status: val, id: id}, function (data) {
+            if (data.code == 200) {
+                layer.msg(data.info, {icon: 1, time: 1000}, function () {
+                    location.reload();
+                })
+            } else {
+                layer.msg(data.info, {icon: 1, time: 1000})
+            }
+        })
+    }
+</script>

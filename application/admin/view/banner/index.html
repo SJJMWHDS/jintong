@@ -1,0 +1,188 @@
+{layout name="blogadmin"}
+<ol class="breadcrumb">
+    <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+    <li><a href="#">轮播图管理</a></li>
+    <li class="active">轮播图列表</li>
+
+    <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+</ol>
+
+<!-- 面版 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <button class="btn btn-danger" onclick="Alldel()"><span class="glyphicon glyphicon-trash"></span> 批量删除</button>
+        <a href="javascript:;" data-toggle="modal" data-target="#banner_add" class="btn btn-success"><span
+                class="glyphicon glyphicon-plus"></span> 添加轮播图</a>
+
+        <p class="pull-right tots">共有 {$tot} 条数据</p>
+        <form action="" class="form-inline pull-right">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" value="{$get['search']|default=''}"
+                       placeholder="请输入你要搜索的内容">
+            </div>
+            <input type="submit" value="搜索" class="btn btn-success">
+        </form>
+
+
+    </div>
+    {if condition="$tot"}
+    <table class="table-bordered table table-hover">
+        <th><input type="checkbox" id="del_all" name=""></th>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>img</th>
+        <th>url</th>
+        <th>sort</th>
+        {volist name="data" id="v"}
+        <tr>
+            <td><input type="checkbox" value="{$v.id}" name="" data-img="{$v.img}"></td>
+            <td>{$v.id}</td>
+            <td>{$v.name}</td>
+            <td>
+                <img height="150px" src="/blog/public/upload/banner/{$v.img}" alt="">
+            </td>
+            <td>{$v.url}</td>
+            <td>
+                <input type="text" value="{$v.sort}" onchange="sort({$v.id},this)"
+                       style="width: 50px;text-align: center">
+            </td>
+            <td><a href="javascript:;" data-toggle="modal" data-target="#banner_save" onclick="save({$v.id})"
+                   class="glyphicon glyphicon-pencil"></a>&nbsp;&nbsp;&nbsp;
+                <a href="javascript:;" onclick="del(this,{$v.id})" data-img="{$v.img}"
+                   class="glyphicon glyphicon-trash"></a>
+            </td>
+        </tr>
+        {/volist}
+    </table>
+    {/if}
+    {if condition="$tot==0"}
+    <p>
+        <img src="/blog/public/upload/users/noneSJ.png" alt="">
+    </p>
+    {/if}
+    <!-- 分页效果 -->
+    <div class="panel-footer">
+        <nav style="text-align:center;">
+            {$data->render()}
+        </nav>
+
+    </div>
+</div>
+
+<div class="modal fade" id="banner_add">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">添加轮播图</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{:url('banner/ajax_add')}" method="post" id="addBanner" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>轮播图名</label>
+                        <input type="text" name="name" class="form-control t" placeholder="请输入轮播图名" required>
+                        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>轮播图</label>
+                        <input type="file" name="img" required>
+                    </div>
+                    <div class="form-group">
+                        <label>跳转地址</label>
+                        <input type="text" name="url" class="form-control t" placeholder="请输入跳转地址" required>
+                        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>排序</label>
+                        <input type="number" name="sort" value="0" class="form-control t" required>
+                        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+                    </div>
+                    <div class="form-group pull-right">
+                        <input type="submit" value="提交" onclick="add()" class="btn btn-success">
+                        <input type="reset" value="重置" class="btn btn-danger">
+                    </div>
+
+                    <div style="clear:both"></div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="banner_save">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">修改轮播图</h4>
+            </div>
+            <div class="modal-body" id="saveBanner">
+
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+    function sort(id, obj) {
+        let val = $(obj).val();
+        $.get("{:url('banner/ajax_sort')}", {sort: val, id: id}, function (data) {
+            if (data == 1) {
+                location.reload();
+            }
+        })
+    }
+
+    $("#del_all").click(function () {
+        let t_f = $(this).prop("checked");
+        $("input[type='checkbox']").not("#del_all").prop("checked", t_f);
+    })
+
+    function Alldel() {
+        layer.confirm('您确定要删除吗？', {
+                btn: ['确认', '取消'] //按钮
+            }, function () {
+                let idarr = 0, imgarr = [];
+                $("input[type='checkbox']:checked").not("#del_all").each(function () {
+                    idarr += "," + $(this).val();
+                    imgarr.push($(this).attr("data-img"));
+                })
+                imgarr = imgarr.join(",");
+                $.get("{:url('banner/ajax_delAll')}", {idarr: idarr, imgarr: imgarr}, function (data) {
+                    if (data == 1) {
+                        layer.msg("删除成功", {icon: 1, time: 1000}, function () {
+                            location.reload();
+                        })
+                    } else {
+                        layer.msg("删除失败", {icon: 2, time: 1000})
+                    }
+                })
+            }
+            , function () {
+                layer.close();
+            });
+    }
+
+    function del(obj, id) {
+        let img = $(obj).attr("data-img");
+        $.get("{:url('banner/ajax_delAll')}", {idarr: id, imgarr: img}, function (data) {
+            if (data == 1) {
+                layer.msg("删除成功", {icon: 1, time: 1000}, function () {
+                    location.reload();
+                })
+            } else {
+                layer.msg("删除失败", {icon: 2, time: 1000})
+            }
+        })
+    }
+
+    function save(id) {
+        $.get("{:url('banner/ajax_tk')}", {id: id}, function (data) {
+            $("#saveBanner").html(data);
+        })
+    }
+</script>

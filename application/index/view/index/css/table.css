@@ -1,0 +1,214 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: "Open Sans",Helvetica,Arial,Verdana,sans-serif;
+    list-style: none;
+    list-style-image: none;
+}
+a{
+    text-decoration: none;
+}
+i{
+    font-style: normal;
+}
+body{
+    background:#d6d6d6;
+}
+.page{
+    width:1020px;
+    background: #ffffff;
+    box-shadow: 0 0 12px #9e9e9e;
+    margin:0 auto;
+}
+header{
+    background: transparent none repeat center top;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    position: relative;
+}
+header .wf-wrap{
+    padding:0 20px;
+    margin: 0 auto;
+}
+header .wf-wrap .wf-table{
+    height:124px;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .wf-wrap .wf-table .logo{
+    padding:10px 0;
+    width:299px;
+    display: flex;
+    justify-content: space-between;
+}
+header .wf-wrap .wf-table .logo img{
+    width:61.83px;
+    height:auto;
+}
+header .wf-wrap .wf-table .text{
+    width:180px;
+    height:80px;
+    margin-right: 50px;
+    margin-top: 12px;
+}
+header .wf-wrap .wf-table .logoText{
+    font-size: 16px;
+    margin-left: 17px;
+}
+header .wf-wrap .wf-table .logoText strong{
+    font-weight: 700;
+}
+.main-nav{
+    width:400px;
+    height:39.4px;
+    border-bottom: 1px solid rgba(56, 56, 56, 1);
+    border-top: 1px solid rgba(56, 56, 56, 1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.main-nav li a{
+    color:#737373;
+}
+.main-nav li.act a{
+    color:#68a069;
+}
+.main-nav li:hover a{
+    color:#68a069;
+}
+.assistive .top-right{
+    width:223px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+.assistive .top-right form{
+    display: flex;
+    justify-content: space-between;
+}
+.assistive .top-right input{
+    border: 1px solid #666666;
+    color: #8d9095;
+    font-size: 13px;
+    line-height: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width:149px;
+    height: 33px;
+    margin-left: 41px;
+}
+.assistive .top-right a{
+    display: block;
+    width: 33px;
+    line-height: 33px;
+    height: 33px;
+    background: #666666 none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 0;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0px 10px;
+    text-indent: 0;
+    text-shadow: none;
+    transition: all 0.2s ease 0s;
+    right: 0;
+    top: 5px;
+}
+.bit-main{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.bit-main .bit-bk{
+    width:960px;
+    height:27.8px;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    color: #333333;
+    padding: 0 0 5px 0;
+    margin-top: 20px;
+    border-bottom: 2px solid #ACC4AC;
+    margin-left: 60px;
+}
+.bit-main .wf-wrap{
+    padding:0 20px;
+    margin: 0 auto;
+}
+.bit-main .wf-wrap .conter{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+}
+section p{
+    color:#696969;
+    margin-top: 45px;
+}
+section p a{
+    color:#696969;
+}
+section .form-group{
+    margin-top: 20px;
+}
+section .form-group label{
+    color: rgb(85, 85, 85);
+    font-size: 14px;
+    line-height: 14px;
+    position: relative;
+    margin-bottom: 4px;
+}
+section .form-group .ip input{
+    width:744px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(156, 107, 54);
+    height: 25px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+section .form-group .ip textarea{
+    width:744px;
+    border: 1px solid rgb(221, 221, 221);
+    color: rgb(156, 107, 54);
+    height: 63.6px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+section .form-group .ip canvas{
+    display: block;
+    width:115px;
+    height:40px;
+    margin-top: 5px;
+}
+
+section .sc button{
+    border: none;
+    font-size: 16px;
+    height:30px;
+    width:74px;
+    color:#ffffff;
+    background-color: #f57c30;
+    border: 1px solid #f57c30;
+}
+footer{
+    border-top: 1px solid rgba(0,0,0,0.2);
+    margin-top: 30px;
+    height:107px;
+}
+footer .wf-wrap{
+    padding:0 20px;
+    margin: 0 auto;
+}
+footer .wf-wrap .wf-db{
+    width:100%;
+    text-align: center;
+    margin-top: 34px;
+}
+footer .wf-wrap .wf-db span{
+    color: rgb(51, 51, 51);
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+}

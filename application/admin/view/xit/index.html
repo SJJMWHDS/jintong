@@ -1,0 +1,54 @@
+{layout name="blogadmin"}
+<div class="col-md-10">
+    <ol class="breadcrumb">
+        <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+        <li><a href="#">系统配置管理</a></li>
+        <li class="active">系统配置列表</li>
+
+        <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+    </ol>
+    <!-- 面版 -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+            <form action="{:url('xit/save')}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="form-control" name="title" value="{:config('webConfig.title')}">
+                </div>
+                <div class="form-group">
+                    <label>网站logo</label>
+                    <input type="file" name="logo" value="{:config('webConfig.logo')}">
+                    <br>
+                    <img width="100px" src="/blog/public/upload/{:config('webConfig.logo')}" alt="">
+                </div>
+                <div class="form-group">
+                    <label>关键字</label>
+                    <input type="text" class="form-control" name="keywords" value="{:config('webConfig.keywords')}">
+                </div>
+                <div class="form-group">
+                    <label>描述</label>
+                    <textarea class="form-control" rows="3"
+                              name="description">{:config('webConfig.description')}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>版权信息</label>
+                    <input type="text" class="form-control" name="infoBan" value="{:config('webConfig.infoBan')}">
+                </div>
+                <div class="form-group">
+                    <label>备案信息</label>
+                    <input type="text" class="form-control" name="infoBei" value="{:config('webConfig.infoBei')}">
+                </div>
+                <div class="form-group">
+                    <label>百度统计代码</label>
+                    <textarea class="form-control" rows="3" name="code">{:config('webConfig.code')}</textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="提交">
+                    <input type="reset" class="btn btn-danger" value="重置">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

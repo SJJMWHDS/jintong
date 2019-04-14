@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sakura＇s Blog | 个人博客 sakura Blog</title>
+    <link rel="stylesheet" href="/blog/public/static/home/css/index.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_779204_vdyzpi9hph.css">
+    <link rel="stylesheet" href="/blog/public/static/home/css/style.css">
+    <link rel="stylesheet" href="/blog/public/static/home/css/comment.css">
+    <script src="/blog/public/static/home/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div id="page" class="fix_width">
+    <!--头部-->
+    <header>
+        <div class="wf_wrap" style="display: table">
+            <div class="wf_td branding" style="display: table">
+                <a href="index.html" class="bitem logo">
+                    <img src="https://ccdn.goodq.top/caches/b2ac3c765e8751bf8ed83348310feed1/aHR0cDovLzU2YjAwNTk3MGNmYzcudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNi8wMi8xNjlmMTcwNGViYzMxZWI0NjUzODhjZjY1MzM0Y2RkZC5wbmc_p_p100_p_3D.png" alt="" class="preload-me" style="width: 61.83px;height: 100px;margin-right: 17px">
+                </a>
+                <div class="bitem text" style="display: table-cell;vertical-align: middle">
+                    <a href="" style="color: #383838">
+                            <span>
+                                <strong>Sakura's&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </span>
+                    </a>
+                    <a href="" style="color: #383838">
+                            <span>
+                                <strong>Blog</strong>
+                            </span>
+                    </a>
+                </div>
+            </div>
+            <div class="wf_td navigation" style="width: 457.6px">
+                <ul class="mainmenu">
+                    <li class="index">
+                        <a href="index.html" class="active">博客</a>
+                    </li>
+                    <li class="about">
+                        <a href="about_me.html">关于我</a>
+                    </li>
+                    <li class="table">
+                        <a href="table.html">和我联系</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wf_td assistive_info">
+                <div class="mobileHidde">
+                    <div class="bitSearchForm" style="padding-top: 10px!important;padding-bottom:10px!important;word-wrap: break-word">
+                        <form action="" class="searchform">
+                            <input type="text" class="search" name="search" id="form_search" value placeholder="请输入关键字">
+                            <a type="submit" class="Go iconfont icon-sousuo4" href="javascript:;" style="line-height: 33px"></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--首页-->
+    <div class="main" style="display: block;width: 100%;overflow: hidden">
+        <div class="wf_wrap" style="padding: 0 20px">
+            <div class="left-sidebar-wrapper" style="width: 25%;padding-right: 20px">
+                <div class="bitLeftSider" style="background-color: white;margin-bottom: 20px;padding: 4px 10px 4px 10px;">
+                    <div class="state_q" style="padding: 0 10px;margin-top: 20px;border-bottom: 2px solid #acc4ac;">
+                        <div class="classify" style="font-size: 14px;font-weight: bold;color: #666666;padding:0 0 5px 0">博客分类</div>
+                    </div>
+                </div>
+                <div class="list-content">
+                    <ul class="menu" style="height:125.4px;display: flex;flex-direction: column;justify-content: space-between;padding-left: 13px">
+                        {volist name="type" id="k"}
+                        <li>
+                            <a href="">
+                                <span>{$k.name}</span>
+                            </a>
+                        </li>
+                        {/volist}
+
+                    </ul>
+                </div>
+                <div class="bitLeftSider" style="background-color: white;margin-bottom: 20px;padding: 4px 10px 4px 10px;">
+                    <div class="state_q" style="padding: 0 10px;margin-top: 20px;border-bottom: 2px solid #acc4ac;">
+                        <div class="classify" style="font-size: 14px;font-weight: bold;color: #666666;padding:0 0 5px 0">热门文章</div>
+                    </div>
+                </div>
+                <div class="list-content">
+                    <ul class="menu" style="height:125.4px;display: flex;flex-direction: column;justify-content: space-between;padding-left: 13px">
+                        {volist name="hot" id="s"}
+                        <li>
+                            <a href="{:url('index/details')}?id={$s.id}">
+                                <span>{$s.title}</span>
+                            </a>
+                        </li>
+                        {/volist}
+
+                    </ul>
+                </div>
+                <div class="bitLeftSider" style="background-color: white;padding: 4px 10px 4px 10px;">
+                    <div class="state_q" style="padding: 0 10px;margin-top: 20px;border-bottom: 2px solid #acc4ac;">
+                        <div class="classify" style="font-size: 14px;font-weight: bold;color: #666666;padding:0 0 5px 0">关于博主</div>
+                    </div>
+                </div>
+                <div class="personal" style="margin-bottom: 20px;padding-top: 10px;">
+                    <div class="info" style="padding: 10px;font-size:12px;color:#666666;">
+                        <div style="text-align: center">
+                            <img src="https://ccdn.goodq.top/caches/b2ac3c765e8751bf8ed83348310feed1/aHR0cDovLzU2YjAwNTk3MGNmYzcudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNy8wNi8xZGUwMGQzM2U0YjQ3YjYyMjU3ZjhiYjllODA2MTU5ZC5wbmc_p_p100_p_3D.png" alt="" style="max-width: 100%">
+                        </div>
+                        <div style="text-align: center;">&nbsp;</div>
+                        <div>
+                            <span>姓名：Marry Miller</span>
+                        </div>
+                        <div>
+                            <span>出生日期：2012-08-01</span>
+                        </div>
+                        <div>
+                            <span>星座：处女座</span>
+                        </div>
+                        <div>
+                            <span>新居城市：沈阳</span>
+                        </div>
+                        <div>
+                            <span>职业：作家</span>
+                        </div>
+                        <div>
+                            <span>爱好：美食、旅行、电影</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdoe" style="margin-bottom: 20px;padding:0 10px;">
+                    <ul style="display: flex;">
+                        <li style="display: inline-block;margin-right: 10px">
+                            <span class="iconfont icon-weixin2" style=";font-size: 22px;color: #0bc631"></span>
+                        </li>
+                        <li style="display: inline-block;margin-right: 10px">
+                            <span class="iconfont icon-xinlang" style=";font-size: 22px;color: #e5162d"></span>
+                        </li>
+                        <li style="display: inline-block;margin-right: 10px">
+                            <span class="iconfont icon-QQCopy" style=";font-size: 22px;color: #4ba7ff"></span>
+                        </li>
+                        <li style="display: inline-block;margin-right: 10px">
+                            <span class="iconfont icon-shouji" style=";font-size: 22px;color: #33bc7d"></span>
+                        </li>
+                        <li style="display: inline-block;margin-right: 10px">
+                            <span class="iconfont icon-youxiang1" style=";font-size: 22px;color: #5998ff"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="belong" style="margin-bottom: 20px">
+                    <div class="text" style="padding: 10px">
+                        <span style="font-size: 12px;color: #333333">© 2105 Marry's Blog 版权所有</span>
+                    </div>
+                </div>
+            </div>
+            <!--详情页-->
+            {volist name="data" id="v"}
+            <div class="content" style="width: 100%;padding: 20px;">
+                <div class="head">
+                    <h1>
+                        <div class="qfy_title_inner" style="display:inline-block;position:relative;max-width:100%;">
+                            <div class="header_title" style="font-size:28px;font-weight:normal;font-style:normal;color:#9ec09f;">{$v.title}</div>
+                        </div>
+                    </h1>
+                </div>
+                <div class="rough" style="padding-top: 20px;padding-bottom: 10px;display: flex">
+                    <div class="time" style="width: 50%;font-size: 14px;color: #9b9b9b;text-align: inherit;padding:0 5px">
+                        <div class="qfe_wrapper">
+                            <span style="font-size:14px;font-weight:normal;font-style:normal;">发布日期：</span>{:date("Y-m-d H:i:s",$v.time)}
+                        </div>
+                    </div>
+                    <div class="views" style="width: 50%;font-size: 14px;color: #9b9b9b;text-align: inherit;padding:0 5px">
+                        <div class="qfe_wrapper">
+                            <span style="font-size:14px;font-weight:normal;font-style:normal;">浏览次数：</span>{$v.looknum}
+                        </div>
+                    </div>
+                </div>
+                <div class="container" style="padding-right: 5px;padding-left: 5px">
+                    {:htmlspecialchars_decode($v.text)}
+                </div>
+                <div class="switch" style="padding-top: 40px;padding-left: 5px;padding-right: 5px;padding-bottom: 20px">
+                    <div class="prenext_inner" style="display: flex;flex-direction: column;">
+                        <div class="pre_inner " style="padding:10px;">
+                            <a href="" class="">
+                                <span class="action" style="font-size:14px ;font-weight:normal;font-style:normal;color:#9ec09f;">相关文章</span>
+                                <span class="blank" style="width:10px;height:0px"></span>
+                            </a>
+                        </div>
+                        {volist name="exe" id="m"}
+                        <div class="pre_inner " style="padding:10px;">
+                            <a href="{:url('details')}?id={$m.id}" class="">
+                                <span class="action" style="font-size:14px ;font-weight:normal;font-style:normal;color:#9ec09f;">{$m.title}</span>
+                                <span class="blank" style="width:10px;height:0px"></span>
+                            </a>
+                        </div>
+                        {/volist}
+                    </div>
+                </div>
+
+                <!--此评论textarea文本框部分使用的https://github.com/alexdunphy/flexText此插件-->
+                <div class="commentAll">
+                    <!--评论区域 begin-->
+                    <div class="reviewArea clearfix">
+                        <textarea class="content comment-input" placeholder="Please enter a comment&hellip;" onkeyup="keyUP(this)" name="text"></textarea>
+                        <a href="javascript:;" class="plBtn">评论</a>
+                    </div>
+                    <!--评论区域 end-->
+                    <!--回复区域 begin-->
+                    <div class="comment-show">
+                        <div class="comment-show-con clearfix">
+                            <div class="comment-show-con-img pull-left"><img src="images/header-img-comment_03.png" alt=""></div>
+                            <div class="comment-show-con-list pull-left clearfix">
+                                <div class="pl-text clearfix">
+                                    <a href="#" class="comment-size-name">张三 : </a>
+                                    <span class="my-pl-con">&nbsp;来啊 造作啊!</span>
+                                </div>
+                                <div class="date-dz">
+                                    <span class="date-dz-left pull-left comment-time">2017-5-2 11:11:39</span>
+                                    <div class="date-dz-right pull-right comment-pl-block">
+                                        <a href="javascript:;" class="removeBlock">删除</a>
+                                        <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>
+                                        <span class="pull-left date-dz-line">|</span>
+                                        <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a>
+                                    </div>
+                                </div>
+                                <div class="hf-list-con"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--回复区域 end-->
+                </div>
+            </div>
+            {/volist}
+        </div>
+    </div>
+    <!--底部-->
+    <footer style="padding:0 20px;border-top: 1px solid rgba(0,0,0,0.2);">
+        <div class="container" style="width:100%;margin-bottom: 20px;color: #555555;padding-top: 20px;padding-bottom: 20px;">
+            <div class="qfe" style="width: 100%;padding:0 5px">
+                <div style="text-align: center;">
+                    <span style="color: rgb(51, 51, 51); font-size: 12px; background-color: rgb(255, 255, 255);">© 2017 Marry's Blog 版权所有 网站备案号: 京123456789</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+<script type="text/javascript" src="/blog/public/static/home/js/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="/blog/public/static/home/js/jquery.flexText.js"></script>
+<!--textarea高度自适应-->
+<script type="text/javascript">
+    $(function () {
+        $('.content').flexText();
+    });
+</script>
+<!--textarea限制字数-->
+<script type="text/javascript">
+    function keyUP(t){
+        var len = $(t).val().length;
+        if(len > 139){
+            $(t).val($(t).val().substring(0,140));
+        }
+    }
+</script>
+<!--点击评论创建评论条-->
+<script type="text/javascript">
+    $('.commentAll').on('click','.plBtn',function(){
+        var myDate = new Date();
+        //获取当前年
+        var year=myDate.getFullYear();
+        //获取当前月
+        var month=myDate.getMonth()+1;
+        //获取当前日
+        var date=myDate.getDate();
+        var h=myDate.getHours();       //获取当前小时数(0-23)
+        var m=myDate.getMinutes();     //获取当前分钟数(0-59)
+        if(m<10) m = '0' + m;
+        var s=myDate.getSeconds();
+        if(s<10) s = '0' + s;
+        var now=year+'-'+month+"-"+date+" "+h+':'+m+":"+s;
+        //获取输入内容
+        var oSize = $(this).siblings('.flex-text-wrap').find('.comment-input').val();
+        console.log(oSize);
+        //动态创建评论模块
+        oHtml = '<div class="comment-show-con clearfix"><div class="comment-show-con-img pull-left"><img src="images/header-img-comment_03.png" alt=""></div> <div class="comment-show-con-list pull-left clearfix"><div class="pl-text clearfix"> <a href="#" class="comment-size-name">David Beckham : </a> <span class="my-pl-con">&nbsp;'+ oSize +'</span> </div> <div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+now+'</span> <div class="date-dz-right pull-right comment-pl-block"><a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a> </div> </div><div class="hf-list-con"></div></div> </div>';
+        if(oSize.replace(/(^\s*)|(\s*$)/g, "") != ''){
+            $(this).parents('.reviewArea ').siblings('.comment-show').prepend(oHtml);
+            $(this).siblings('.flex-text-wrap').find('.comment-input').prop('value','').siblings('pre').find('span').text('');
+        }
+    });
+</script>
+<!--点击回复动态创建回复块-->
+<script type="text/javascript">
+    $('.comment-show').on('click','.pl-hf',function(){
+        //获取回复人的名字
+        var fhName = $(this).parents('.date-dz-right').parents('.date-dz').siblings('.pl-text').find('.comment-size-name').html();
+        //回复@
+        var fhN = '回复@'+fhName;
+        //var oInput = $(this).parents('.date-dz-right').parents('.date-dz').siblings('.hf-con');
+        var fhHtml = '<div class="hf-con pull-left"> <textarea class="content comment-input hf-input" placeholder="" onkeyup="keyUP(this)"></textarea> <a href="javascript:;" class="hf-pl">评论</a></div>';
+        //显示回复
+        if($(this).is('.hf-con-block')){
+            $(this).parents('.date-dz-right').parents('.date-dz').append(fhHtml);
+            $(this).removeClass('hf-con-block');
+            $('.content').flexText();
+            $(this).parents('.date-dz-right').siblings('.hf-con').find('.pre').css('padding','6px 15px');
+            //console.log($(this).parents('.date-dz-right').siblings('.hf-con').find('.pre'))
+            //input框自动聚焦
+            $(this).parents('.date-dz-right').siblings('.hf-con').find('.hf-input').val('').focus().val(fhN);
+        }else {
+            $(this).addClass('hf-con-block');
+            $(this).parents('.date-dz-right').siblings('.hf-con').remove();
+        }
+    });
+</script>
+<!--评论回复块创建-->
+<script type="text/javascript">
+    $('.comment-show').on('click','.hf-pl',function(){
+        var oThis = $(this);
+        var myDate = new Date();
+        //获取当前年
+        var year=myDate.getFullYear();
+        //获取当前月
+        var month=myDate.getMonth()+1;
+        //获取当前日
+        var date=myDate.getDate();
+        var h=myDate.getHours();       //获取当前小时数(0-23)
+        var m=myDate.getMinutes();     //获取当前分钟数(0-59)
+        if(m<10) m = '0' + m;
+        var s=myDate.getSeconds();
+        if(s<10) s = '0' + s;
+        var now=year+'-'+month+"-"+date+" "+h+':'+m+":"+s;
+        //获取输入内容
+        var oHfVal = $(this).siblings('.flex-text-wrap').find('.hf-input').val();
+        console.log(oHfVal)
+        var oHfName = $(this).parents('.hf-con').parents('.date-dz').siblings('.pl-text').find('.comment-size-name').html();
+        var oAllVal = '回复@'+oHfName;
+        if(oHfVal.replace(/^ +| +$/g,'') == '' || oHfVal == oAllVal){
+
+        }else {
+            $.getJSON("json/pl.json",function(data){
+                var oAt = '';
+                var oHf = '';
+                $.each(data,function(n,v){
+                    delete v.hfContent;
+                    delete v.atName;
+                    var arr;
+                    var ohfNameArr;
+                    if(oHfVal.indexOf("@") == -1){
+                        data['atName'] = '';
+                        data['hfContent'] = oHfVal;
+                    }else {
+                        arr = oHfVal.split(':');
+                        ohfNameArr = arr[0].split('@');
+                        data['hfContent'] = arr[1];
+                        data['atName'] = ohfNameArr[1];
+                    }
+
+                    if(data.atName == ''){
+                        oAt = data.hfContent;
+                    }else {
+                        oAt = '回复<a href="#" class="atName">@'+data.atName+'</a> : '+data.hfContent;
+                    }
+                    oHf = data.hfName;
+                });
+
+                var oHtml = '<div class="all-pl-con"><div class="pl-text hfpl-text clearfix"><a href="#" class="comment-size-name">我的名字 : </a><span class="my-pl-con">'+oAt+'</span></div><div class="date-dz"> <span class="date-dz-left pull-left comment-time">'+now+'</span> <div class="date-dz-right pull-right comment-pl-block"> <a href="javascript:;" class="removeBlock">删除</a> <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a> <span class="pull-left date-dz-line">|</span> <a href="javascript:;" class="date-dz-z pull-left"><i class="date-dz-z-click-red"></i>赞 (<i class="z-num">666</i>)</a> </div> </div></div>';
+                oThis.parents('.hf-con').parents('.comment-show-con-list').find('.hf-list-con').css('display','block').prepend(oHtml) && oThis.parents('.hf-con').siblings('.date-dz-right').find('.pl-hf').addClass('hf-con-block') && oThis.parents('.hf-con').remove();
+            });
+        }
+    });
+</script>
+<!--删除评论块-->
+<script type="text/javascript">
+    $('.commentAll').on('click','.removeBlock',function(){
+        var oT = $(this).parents('.date-dz-right').parents('.date-dz').parents('.all-pl-con');
+        if(oT.siblings('.all-pl-con').length >= 1){
+            oT.remove();
+        }else {
+            $(this).parents('.date-dz-right').parents('.date-dz').parents('.all-pl-con').parents('.hf-list-con').css('display','none')
+            oT.remove();
+        }
+        $(this).parents('.date-dz-right').parents('.date-dz').parents('.comment-show-con-list').parents('.comment-show-con').remove();
+
+    })
+</script>
+<!--点赞-->
+<script type="text/javascript">
+    $('.comment-show').on('click','.date-dz-z',function(){
+        var zNum = $(this).find('.z-num').html();
+        if($(this).is('.date-dz-z-click')){
+            zNum--;
+            $(this).removeClass('date-dz-z-click red');
+            $(this).find('.z-num').html(zNum);
+            $(this).find('.date-dz-z-click-red').removeClass('red');
+        }else {
+            zNum++;
+            $(this).addClass('date-dz-z-click');
+            $(this).find('.z-num').html(zNum);
+            $(this).find('.date-dz-z-click-red').addClass('red');
+        }
+    })
+</script>
+</body>
+</html>

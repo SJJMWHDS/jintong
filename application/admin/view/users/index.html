@@ -1,0 +1,85 @@
+{layout name="blogadmin"}
+<ol class="breadcrumb">
+    <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+    <li><a href="#">会员管理</a></li>
+    <li class="active">会员列表</li>
+
+    <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+</ol>
+
+<!-- 面版 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p class="pull-right tots">共有 {$tot} 条数据</p>
+        <form action="" class="form-inline pull-right">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" value="{$get['search']|default=''}"
+                       placeholder="请输入你要搜索的内容">
+            </div>
+            <input type="submit" value="搜索" class="btn btn-success">
+        </form>
+        <div style="clear: both"></div>
+    </div>
+    {if condition="$tot"}
+    <table class="table-bordered table table-hover">
+        <th style="vertical-align: middle;text-align: center">ID</th>
+        <th style="vertical-align: middle;text-align: center">NAME</th>
+        <th style="vertical-align: middle;text-align: center">PHONE</th>
+        <th style="vertical-align: middle;text-align: center">email</th>
+        <th style="vertical-align: middle;text-align: center">TIME</th>
+        <th style="vertical-align: middle;text-align: center">昵称</th>
+        <th style="vertical-align: middle;text-align: center">头像</th>
+        <th style="vertical-align: middle;text-align: center">状态</th>
+        {volist name="data" id="v"}
+        <tr>
+            <td style="vertical-align: middle;text-align: center">{$v.id}</td>
+            <td style="vertical-align: middle;text-align: center">{$v.username}</td>
+            <td style="vertical-align: middle;text-align: center">{$v.phone}</td>
+            <td style="vertical-align: middle;text-align: center">{$v.email}</td>
+            <td style="vertical-align: middle;text-align: center">{:date("Y-m-d H:i:s",$v.time)}</td>
+            <td style="vertical-align: middle;text-align: center">{$v.nickname|default="暂无记录"}</td>
+            <td style="vertical-align: middle;text-align: center">
+                {if condition="$v.img"}
+                <img width="50px" src="/blog/public/upload/users/{$v.img}" alt="">
+                {else /}
+                <img width="50px" src="/blog/public/upload/users/lm.gif" alt="">
+                {/if}
+            </td>
+            {if condition="$v.status"}
+            <td style="vertical-align: middle;text-align: center"><span class="btn btn-success"
+                                                                        onclick="toggle(0,{$v.id},this)">白名单</span></td>
+            {else /}
+            <td style="vertical-align: middle;text-align: center"><span class="btn btn-warning"
+                                                                        onclick="toggle(1,{$v.id},this)">黑名单</span></td>
+            {/if}
+        </tr>
+        {/volist}
+    </table>
+    {/if}
+    {if condition="$tot==0"}
+    <p>
+        <img src="/blog/public/upload/users/noneSJ.png" alt="">
+    </p>
+    {/if}
+    <!-- 分页效果 -->
+    <div class="panel-footer">
+        <nav style="text-align:center;">
+            {$data->render()}
+        </nav>
+
+    </div>
+</div>
+<script>
+    function toggle(a, id, obj) {
+        $.get("{:url('users/ajax_toggle')}", {status: a, id: id}, function (data) {
+            if (data != 0) {
+                let str = JSON.parse(data);
+                if (str.status == 0) {
+                    $(obj).parent().html("<span class=\"btn btn-warning\" onclick=\"toggle(1," + str.id + ",this)\">黑名单</span>");
+                } else {
+                    $(obj).parent().html("<span class=\"btn btn-success\" onclick=\"toggle(0," + str.id + ",this)\">白名单</span>");
+                }
+            }
+        })
+    }
+</script>

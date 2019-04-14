@@ -1,0 +1,25 @@
+<header>
+    <div class="logo">
+        <img src="/blog/public/upload/{:config('webConfig.logo')}" alt="">
+        <h1>Merry's Blog</h1>
+    </div>
+    <div class="bar">
+        {volist name="nav" id="v"}
+        {if condition="$v.name==$at"}
+        <a href="javascript:;" class="active">{$v.name}</a>
+        {else /}
+        <a href="">{$v.name}</a>
+        {/if}
+        {/volist}
+    </div>
+    <form action="" class="form-inline pull-right">
+        <div class="form-group">
+            <input type="text" name="search" class="form-control" value="{$get['search']|default=''}"
+                   placeholder="请输入关键字">
+        </div>
+        <input type="submit" value="搜索" class="btn btn-success">
+    </form>
+        <input type="text" placeholder="请输入关键字">
+        <div class="on"><i class="iconfont icon-BFind"></i></div>
+
+</header>

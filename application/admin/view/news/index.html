@@ -1,0 +1,141 @@
+{layout name="blogadmin"}
+<ol class="breadcrumb">
+    <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+    <li><a href="{:url('news/index')}">新闻管理</a></li>
+    <li class="active">新闻列表</li>
+
+    <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+</ol>
+
+<!-- 面版 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <button class="btn btn-danger" onclick="Alldel()"><span class="glyphicon glyphicon-trash"></span> 批量删除</button>
+        <a href="{:url('news/add')}" class="btn btn-success"><span
+                class="glyphicon glyphicon-plus"></span> 添加新闻</a>
+        <p class="pull-right tots">共有 {$tot} 条数据</p>
+        <form action="" class="form-inline pull-right">
+            <div class="form-group">
+                <select name="type" id="" class="form-control">
+                    <option value="">全部</option>
+                    {volist name="type" id="val"}
+                    {if condition="$val.id==$typeid"}
+                    <option selected value="{$val.id}">{$val.name}</option>
+                    {else /}
+                    <option value="{$val.id}">{$val.name}</option>
+                    {/if}
+                    {/volist}
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="sort" id="" class="form-control">
+                    <option value="0" {$sort==0?"selected":""}>默认</option>
+                    <option value="1" {$sort==1?"selected":""}>浏览量</option>
+                    <option value="2" {$sort==2?"selected":""}>获赞量</option>
+                    <option value="3" {$sort==3?"selected":""}>收藏量</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" value="{$search|default=''}"
+                       placeholder="请输入你要搜索的内容">
+            </div>
+            <input type="submit" value="搜索" class="btn btn-success">
+        </form>
+    </div>
+    {if condition="$tot"}
+    <table class="table-bordered table table-hover">
+        <th><input type="checkbox" id="del_all" name=""></th>
+        <th>ID</th>
+        <th>新闻标题</th>
+        <th>新闻简介</th>
+        <th>新闻关键字</th>
+        <th>新闻描述</th>
+        <th>新闻浏览量</th>
+        <th>新闻获赞数</th>
+        <th>新闻收藏量</th>
+        <th>新闻作者</th>
+        <th>新闻分类</th>
+        <th>新闻图片</th>
+        <th>time</th>
+        <th>操作</th>
+        {volist name="data" id="v"}
+        <tr>
+            <td><input type="checkbox" data-img="{$v.img}" value="{$v.id}" name=""></td>
+            <td>{$v.id}</td>
+            <td>{$v.title}</td>
+            <td>{$v.info}</td>
+            <td>{$v.keywords}</td>
+            <td>{$v.description}</td>
+            <td>{$v.looknum}</td>
+            <td>{$v.zannum}</td>
+            <td>{$v.shounum}</td>
+            <td>{$v.author}</td>
+            <td>{$v.name}</td>
+            <td>
+                <img width="50px" src="/blog/public/upload/news/{$v.img}" alt="">
+            </td>
+            <td>{:date("Y-m-d H:i:s",$v.time)}</td>
+            <td><a href="{:url('news/save')}?id={$v.id}" class="glyphicon glyphicon-pencil"></a>&nbsp;&nbsp;&nbsp;
+                <a href="javascript:;" data-img="{$v.img}" onclick="del(this,{$v.id})"
+                   class="glyphicon glyphicon-trash"></a>
+            </td>
+        </tr>
+        {/volist}
+    </table>
+    {/if}
+    {if condition="$tot==0"}
+    <p>
+        <img src="/blog/public/upload/users/noneSJ.png" alt="">
+    </p>
+    {/if}
+    <!-- 分页效果 -->
+    <div class="panel-footer">
+        <nav style="text-align:center;">
+            {$data->render()}
+        </nav>
+    </div>
+</div>
+<script>
+    $("#del_all").click(function () {
+        let t_f = $(this).prop("checked");
+        $("input[type='checkbox']").not("#del_all").prop("checked", t_f);
+    })
+
+    function Alldel() {
+        layer.confirm('您确定要删除吗？', {
+                btn: ['确认', '取消'] //按钮
+            }, function () {
+                let arrId = 0, arrImg = [];
+                $("input[type='checkbox']:checked").not($("#del_all")).each(function () {
+                    arrId += "," + $(this).val();
+                    arrImg.push($(this).attr("data-img"));
+                })
+                arrImg = arrImg.join(",");
+                $.get("{:url('news/ajax_delAll')}", {arrId: arrId, arrImg: arrImg}, function (data) {
+                    if (data == 1) {
+                        layer.msg("删除成功", {icon: 1, time: 1000}, function () {
+                            location.reload();
+                        })
+                    } else {
+                        layer.msg("删除失败", {icon: 2, time: 1000})
+                    }
+                })
+            }
+            , function () {
+                layer.close();
+            });
+    }
+
+    function del(obj, id) {
+        let img = $(this).attr("data-img");
+        $.get("{:url('news/ajax_delAll')}", {arrId: id, arrImg: img}, function (data) {
+            if (data == 1) {
+                layer.msg("删除成功", {icon: 1, time: 1000}, function () {
+                    location.reload();
+                })
+            } else {
+                layer.msg("删除失败", {icon: 2, time: 1000})
+            }
+        })
+    }
+</script>

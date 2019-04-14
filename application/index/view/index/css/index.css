@@ -1,0 +1,124 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+html,body{
+    width: 100%;
+    height:100%;
+    color: #8d9095;
+    word-spacing: normal;
+    font-weight: normal;
+    font-style: normal;
+    background: #d6d6d6 none no-repeat;
+}
+.fix_width{
+    max-width: 1020px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 12px #9e9e9e;
+}
+#page{
+    background:#ffffff none no-repeat;
+}
+header{
+    width: 100%;
+    height: 125px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.wf_wrap{
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+}
+.wf_td{
+    display: table-cell;
+    vertical-align: middle;
+}
+.branding{
+    width: 299.2px;
+    padding: 10px 0;
+    display: flex;
+    font-family: "San Francisco Display";
+}
+.wf_wrap .branding .text{
+    font-size: 30px;
+}
+.navigation .mainmenu{
+    width: 400px;
+    height: 39.4px;
+    border-bottom: 1px solid rgba(56,56,56,1);
+    border-top: 1px solid rgba(56,56,56,1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #666666;
+    line-height: 37.4px;
+}
+.navigation .mainmenu .active{
+    color: #68a069;
+}
+.navigation .mainmenu li a{
+    color: #8d9095;
+}
+.navigation .mainmenu li a:hover{
+    color: #68a069;
+}
+.assistive_info{
+    width: 223.2px;
+    text-align: right;
+    padding: 8.8px 0;
+}
+.assistive_info .mobileHidde{
+    margin-bottom: 20px;
+    padding-top: 18px;
+    position: relative;
+}
+.assistive_info .mobileHidde .searchform .search{
+    background: #ffffff;
+    border: 1px solid #666666;
+    color: #8d9095;
+    font-size: 13px;
+    line-height: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: 33px;
+}
+.assistive_info .mobileHidde .searchform input[type='text'] {
+    padding: 3px 10px 3px;
+    margin: 5px 0 10px 0;
+}
+.assistive_info .mobileHidde .searchform .Go{
+    position: absolute;
+    right: 0;
+    width: auto;
+    height: 33px;
+    border: 0 none;
+    background: #666666 scroll 0 0;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0 10px;
+    transition: all 0.2s ease 0s;
+    top: 33px;
+}
+.left-sidebar-wrapper .list-content .menu li{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    font-size:14px ;
+    font-weight:normal;
+    font-style:normal;
+    padding-top: 3px;
+}
+.left-sidebar-wrapper .list-content .menu li a{
+    color: #666666;
+}
+.left-sidebar-wrapper .list-content .menu li a:hover{
+    color: #68a069;
+}

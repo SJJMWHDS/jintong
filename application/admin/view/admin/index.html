@@ -1,0 +1,258 @@
+{layout name="blogadmin"}
+<ol class="breadcrumb">
+    <li><a href="{:url('index/index')}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+    <li><a href="#">管理员管理</a></li>
+    <li class="active">管理员列表</li>
+
+    <button class="btn btn-primary btn-xs pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+</ol>
+
+<!-- 面版 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <button class="btn btn-danger" onclick="Alldel()"><span class="glyphicon glyphicon-trash"></span> 批量删除</button>
+        <a href="javascript:;" data-toggle="modal" data-target="#admin_add" class="btn btn-success"><span
+                class="glyphicon glyphicon-plus"></span> 添加管理员</a>
+
+        <p class="pull-right tots">共有 {$tot} 条数据</p>
+        <form action="" class="form-inline pull-right">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" value="{$get['search']|default=''}"
+                       placeholder="请输入你要搜索的内容">
+            </div>
+            <input type="submit" value="搜索" class="btn btn-success">
+        </form>
+
+
+    </div>
+    {if condition="$tot"}
+    <table class="table-bordered table table-hover">
+        <th><input type="checkbox" id="del_all" name=""></th>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>TIME</th>
+        <th>上次登录时间</th>
+        <th>状态</th>
+        <th>操作</th>
+        {volist name="data" id="v"}
+        <tr>
+            <td><input type="checkbox" value="{$v.id}" name=""></td>
+            <td>{$v.id}</td>
+            <td>{$v.username}</td>
+            <td>{:date("Y-m-d H:i:s",$v.time)}</td>
+            <td>{:date("Y-m-d H:i:s",$v.logintime)}</td>
+            {if condition="$v.status"}
+            <td><span class="btn btn-success" onclick="toggle(0,{$v.id},this)">白名单</span></td>
+            {else /}
+            <td><span class="btn btn-warning" onclick="toggle(1,{$v.id},this)">黑名单</span></td>
+            {/if}
+            <td><a href="javascript:;" data-toggle="modal" data-target="#admin_save" onclick="save({$v.id})"
+                   class="glyphicon glyphicon-pencil"></a>&nbsp;&nbsp;&nbsp;
+                <a href="javascript:;" onclick="del({$v.id})" class="glyphicon glyphicon-trash"></a>
+            </td>
+        </tr>
+        {/volist}
+    </table>
+    {/if}
+    {if condition="$tot==0"}
+    <p>
+        <img src="/blog/public/upload/users/noneSJ.png" alt="">
+    </p>
+    {/if}
+    <!-- 分页效果 -->
+    <div class="panel-footer">
+        <nav style="text-align:center;">
+            {$data->render()}
+        </nav>
+
+    </div>
+</div>
+
+<div class="modal fade" id="admin_add">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">添加管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form id="addAdmin">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="username" class="form-control t" placeholder="请输入用户名">
+                        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="password" class="form-control t" placeholder="请输入密码">
+                        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>确认密码</label>
+                        <input type="password" name="repassword" class="form-control t" placeholder="请再次输入密码">
+                        <div class="alert alert-warning" style="display:none;padding: 10px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label><input type="radio" name="status" value="1" checked>白名单</label>
+                        <label><input type="radio" name="status" value="0">黑名单</label>
+                    </div>
+                    <div class="form-group pull-right">
+                        <input type="button" value="提交" onclick="add()" class="btn btn-success">
+                        <input type="reset" value="重置" class="btn btn-danger">
+                    </div>
+
+                    <div style="clear:both"></div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="admin_save">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">修改管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form id="saveAdmin">
+
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+    $(".form-control[name='username']").blur(function () {
+        let val = $(this).val();
+        if (val) {
+            if (val.length >= 5 && val.length <= 12) {
+                $.get("{:url('admin/ajax_username')}", {username: val}, function (data) {
+                    if (data == 0) {
+                        $(".form-control[name='username']").attr("tot", 1).next().hide();
+                    } else {
+                        $(".form-control[name='username']").attr("tot", 0).next().show().html("用户名已存在");
+                    }
+                })
+            } else {
+                $(this).attr("tot", 0).next().show().html("用户名长度在5-12位");
+            }
+        } else {
+            $(this).attr("tot", 0).next().show().html("请输入用户名");
+        }
+    })
+
+    $(".form-control[name='password']").blur(function () {
+        let val = $(this).val();
+        if (val) {
+            if (val.length >= 5 && val.length <= 12) {
+                $(this).attr("tot", 1).next().hide();
+            } else {
+                $(this).attr("tot", 0).next().show().html("用户名长度在5-12位");
+            }
+        } else {
+            $(this).attr("tot", 0).next().show().html("请输入密码");
+        }
+    })
+
+    $(".form-control[name='repassword']").blur(function () {
+        let pass = $(".form-control[name='password']").val();
+        let val = $(this).val();
+        if (pass && val == pass) {
+            $(this).attr("tot", 1).next().hide();
+        } else {
+            $(this).attr("tot", 0).next().show().html("两次密码输入不一致");
+        }
+    })
+
+    function add() {
+        let input = $(".t");
+        input.blur();
+        let tot = 0;
+        input.each(function () {
+            tot += Number($(this).attr("tot"));
+        })
+        if (tot == input.length) {
+            let arr = $("#addAdmin").serializeArray();
+            $.post("{:url('admin/ajax_add')}", arr, function (data) {
+                let arr = JSON.parse(data);
+                if (arr.code == 200) {
+                    layer.msg(arr.info, {icon: 1, time: 1000}, function () {
+                        location.reload();
+                    });
+                } else {
+                    layer.msg(arr.info, {icon: 2, time: 1000});
+                    layer.close();
+                }
+            })
+        }
+    }
+
+    function toggle(a, id, obj) {
+        $.get("{:url('admin/ajax_toggle')}", {status: a, id: id}, function (data) {
+            if (data != 0) {
+                let str = JSON.parse(data);
+                if (str.status == 0) {
+                    $(obj).parent().html("<span class=\"btn btn-warning\" onclick=\"toggle(1," + str.id + ",this)\">黑名单</span>");
+                } else {
+                    $(obj).parent().html("<span class=\"btn btn-success\" onclick=\"toggle(0," + str.id + ",this)\">白名单</span>");
+                }
+            }
+        })
+    }
+
+    $("#del_all").click(function () {
+        let t_f = $(this).prop("checked");
+        $("input[type='checkbox']").not("#del_all").prop("checked", t_f);
+    })
+
+    function Alldel() {
+        layer.confirm('您确定要删除吗？', {
+            btn: ['确认', '取消'] //按钮
+        }, function () {
+            let str = 0;
+            $("input[type='checkbox']:checked").not("#del_all").each(function () {
+                str += "," + $(this).val();
+            })
+            $.get("{:url('admin/ajax_delAll')}", {str: str}, function (data) {
+                if (data == 1) {
+                    layer.msg('删除成功', {time: 1000, icon: 1}, function () {
+                        location.reload();
+                    });
+                } else {
+                    layer.msg('删除失败', {time: 1000, icon: 2}, function () {
+                        location.reload();
+                    });
+                }
+            })
+        }, function () {
+            layer.close();
+        });
+    }
+
+    function del(id) {
+        $.get("{:url('admin/ajax_delAll')}", {str: id}, function (data) {
+            if (data == 1) {
+                layer.msg('删除成功', {time: 1000, icon: 1}, function () {
+                    location.reload();
+                });
+            } else {
+                layer.msg('删除失败', {time: 1000, icon: 2}, function () {
+                    location.reload();
+                });
+            }
+        })
+    }
+
+    function save(id) {
+        $.get("{:url('admin/ajax_tk')}", {id: id}, function (data) {
+            $("#saveAdmin").html(data);
+        })
+    }
+</script>

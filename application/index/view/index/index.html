@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sakura＇s Blog | 个人博客 sakura Blog</title>
+    <link rel="stylesheet" href="/blog/public/static/home/css/index.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_779204_vdyzpi9hph.css">
+    <script src="/blog/public/static/home/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/blog/public/static/admin/bs/css/bootstrap.min.css">
+    <script src="/blog/public/static/admin/bs/js/jquery.min.js"></script>
+
+    <!--//layer引入-->
+    <script src="/blog/public/static/admin/layer-v3.1.1/layer/layer.js"></script>
+    <script src="/blog/public/static/admin/bs/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="page" class="fix_width">
+        <!--头部-->
+        <header>
+            <div class="wf_wrap" style="display: table">
+                <div class="wf_td branding" style="display: table">
+                    <a href="index.html" class="bitem logo">
+                        <img src="https://ccdn.goodq.top/caches/b2ac3c765e8751bf8ed83348310feed1/aHR0cDovLzU2YjAwNTk3MGNmYzcudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNi8wMi8xNjlmMTcwNGViYzMxZWI0NjUzODhjZjY1MzM0Y2RkZC5wbmc_p_p100_p_3D.png" alt="" class="preload-me" style="width: 61.83px;height: 100px;margin-right: 17px">
+                    </a>
+                    <div class="bitem text" style="display: table-cell;vertical-align: middle">
+                        <a href="" style="color: #383838">
+                            <span>
+                                <strong>Sakura's&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                            </span>
+                        </a>
+                        <a href="" style="color: #383838">
+                            <span>
+                                <strong>Blog</strong>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="wf_td navigation" style="width: 457.6px">
+                    <ul class="mainmenu" style="">
+                        <li class="index">
+                            <a href="index.html" class="active">博客</a>
+                        </li>
+                        <li class="about">
+                            <a href="about_me.html">关于我</a>
+                        </li>
+                        <li class="">
+                            <a href="table.html">和我联系</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="wf_td assistive_info">
+                    <div class="mobileHidde">
+                        <div class="bitSearchForm" style="padding-top: 10px!important;padding-bottom:10px!important;word-wrap: break-word">
+                            <form action="" class="searchform">
+                                <input type="text" class="search" name="search" id="form_search" value placeholder="请输入关键字">
+                                <a type="submit" class="Go iconfont icon-sousuo4" href="javascript:;" style="line-height: 33px"></a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--首页-->
+        <div class="main" style="display: block;width: 100%;overflow: hidden">
+            <div class="wf_wrap" style="padding: 0 20px">
+                <div class="left-sidebar-wrapper" style="width: 25%;padding-right: 20px">
+                    <div class="bitLeftSider" style="background-color: white;margin-bottom: 20px;padding: 4px 10px 4px 10px;">
+                        <div class="state_q" style="padding: 0 10px;margin-top: 20px;border-bottom: 2px solid #acc4ac;">
+                            <div class="classify" style="font-size: 14px;font-weight: bold;color: #666666;padding:0 0 5px 0">博客分类</div>
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <ul class="menu" style="height:125.4px;display: flex;flex-direction: column;justify-content: space-between;padding-left: 13px">
+                            {volist name="type" id="k"}
+                            <li>
+                                <a href="{$k.url}?cid={$k.id}">
+                                    <span>{$k.name}</span>
+                                </a>
+                            </li>
+                            {/volist}
+
+                        </ul>
+                    </div>
+                    <div class="bitLeftSider" style="background-color: white;margin-bottom: 20px;padding: 4px 10px 4px 10px;">
+                        <div class="state_q" style="padding: 0 10px;margin-top: 20px;border-bottom: 2px solid #acc4ac;">
+                            <div class="classify" style="font-size: 14px;font-weight: bold;color: #666666;padding:0 0 5px 0">热门文章</div>
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <ul class="menu" style="height:125.4px;display: flex;flex-direction: column;justify-content: space-between;padding-left: 13px">
+                            {volist name="hot" id="s"}
+                            <li>
+                                <a href="{:url('index/details')}?id={$s.id}">
+                                    <span>{$s.title}</span>
+                                </a>
+                            </li>
+                            {/volist}
+
+                        </ul>
+                    </div>
+                    <div class="bitLeftSider" style="background-color: white;padding: 4px 10px 4px 10px;">
+                        <div class="state_q" style="padding: 0 10px;margin-top: 20px;border-bottom: 2px solid #acc4ac;">
+                            <div class="classify" style="font-size: 14px;font-weight: bold;color: #666666;padding:0 0 5px 0">关于博主</div>
+                        </div>
+                    </div>
+                    <div class="personal" style="margin-bottom: 20px;padding-top: 10px;">
+                        <div class="info" style="padding: 10px;font-size:12px;color:#666666;">
+                            <div style="text-align: center">
+                                <img src="https://ccdn.goodq.top/caches/b2ac3c765e8751bf8ed83348310feed1/aHR0cDovLzU2YjAwNTk3MGNmYzcudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxNy8wNi8xZGUwMGQzM2U0YjQ3YjYyMjU3ZjhiYjllODA2MTU5ZC5wbmc_p_p100_p_3D.png" alt="" style="max-width: 100%">
+                            </div>
+                            <div style="text-align: center;">&nbsp;</div>
+                            <div>
+                                <span>姓名：Marry Miller</span>
+                            </div>
+                            <div>
+                                <span>出生日期：2012-08-01</span>
+                            </div>
+                            <div>
+                                <span>星座：处女座</span>
+                            </div>
+                            <div>
+                                <span>新居城市：沈阳</span>
+                            </div>
+                            <div>
+                                <span>职业：作家</span>
+                            </div>
+                            <div>
+                                <span>爱好：美食、旅行、电影</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdoe" style="margin-bottom: 20px;padding:0 10px;">
+                        <ul style="display: flex;">
+                            <li style="display: inline-block;margin-right: 10px">
+                                <span class="iconfont icon-weixin2" style=";font-size: 22px;color: #0bc631"></span>
+                            </li>
+                            <li style="display: inline-block;margin-right: 10px">
+                                <span class="iconfont icon-xinlang" style=";font-size: 22px;color: #e5162d"></span>
+                            </li>
+                            <li style="display: inline-block;margin-right: 10px">
+                                <span class="iconfont icon-QQCopy" style=";font-size: 22px;color: #4ba7ff"></span>
+                            </li>
+                            <li style="display: inline-block;margin-right: 10px">
+                                <span class="iconfont icon-shouji" style=";font-size: 22px;color: #33bc7d"></span>
+                            </li>
+                            <li style="display: inline-block;margin-right: 10px">
+                                <span class="iconfont icon-youxiang1" style=";font-size: 22px;color: #5998ff"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="belong" style="margin-bottom: 20px">
+                        <div class="text" style="padding: 10px">
+                            <span style="font-size: 12px;color: #333333">© 2105 Marry's Blog 版权所有</span>
+                        </div>
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="right-sidebar-wrapper" style="display: block;width: 75%;padding:20px 25px;color: #555555;overflow: hidden">
+                    <ul style="display: flex;flex-direction: column;">
+                        {volist name="data" id="value"}
+                        <li style="max-width: 99.8%;margin-bottom: 10px;padding-bottom: 10px;padding-right: 5px;padding-left: 5px">
+                                <div class="post-title" style="padding-bottom:10px;font-weight:normal;color:#9ec09f;line-height:22px; vertical-align: top;  ">
+                                    <a data-title="true" style="color:#9ec09f;font-size:22px;line-height:22px" class="link_title" title="{$value.title}" href="{:url('index/details')}?id={$value.id}">{$value.title}</a>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="content_img" style="padding:10px 0;">
+                                        <a href="{:url('index/details')}?id={$value.id}" title="{$value.title}">
+                                            <img src="/blog/public/upload//news/{$value.img}" alt="" style="max-width: 100%">
+                                        </a>
+                                    </div>
+                                    <div class="release" style="color: #a0a0a0;font-size: 14px;line-height: 14px;margin-bottom: 5px;">
+                                        <span>
+                                            <span class="post_date">发布日期：
+                                                <span data-date="{:date('Y-m-d H:i:s',$value.time)}" class="post_date_text">{:date("Y-m-d H:i:s",$value.time)}</span>
+                                            </span>
+                                            <span>&nbsp;分类：
+                                                <a class="cate" target="" style="color:#a0a0a0;font-size:14px;"href="{:url('index/details')}?id={$value.id}">
+                                                    <span>{$value.name}</span>
+                                                </a>&nbsp;
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="comment" style="font-size: 14px;color: #3f3f3f;word-break: break-all;">
+                                        <a href="{:url('index/details')}?id={$value.id}" style="color: #3f3f3f">
+                                            <p>{$value.description}</p>
+                                        </a>
+                                        <br>
+                                    </div>
+                                </div>
+                        </li>
+                        {/volist}
+                    </ul>
+                    <style>
+                        .pngination{
+                            display: flex;
+                        }
+                    </style>
+                    <div class="">
+                        <nav style="text-align:center;display: flex;width: 133px;margin: 0 auto">
+                            {$data->render()}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--底部-->
+        <footer style="padding:0 20px;border-top: 1px solid rgba(0,0,0,0.2);">
+            <div class="container" style="width:100%;margin-bottom: 20px;color: #555555;padding-top: 20px;padding-bottom: 20px;">
+                <div class="qfe" style="width: 100%;padding:0 5px">
+                    <div style="text-align: center;">
+                        <span style="color: rgb(51, 51, 51); font-size: 12px; background-color: rgb(255, 255, 255);">© 2017 Marry's Blog 版权所有 网站备案号: 京123456789</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
